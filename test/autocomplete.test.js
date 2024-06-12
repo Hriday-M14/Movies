@@ -59,3 +59,16 @@ it('Shows an Auto-Complete - After searching, dropdown opens up', async () => {
         throw new Error("Error: Dropdown does not open ups, after searching.");
     }
 });
+
+it('After Searching, displays some results', async () => {
+  const input = document.querySelector('input');
+  input.value = 'avengers';
+  input.dispatchEvent(new Event('input'));
+  
+  await waitFor('.dropdown-item');
+  const items = document.querySelectorAll('.dropdown-item');
+
+  if(items.length != 3){
+    throw new Error("Error: Number of Results in the dropdown does not matches the expected value");
+  }
+});
